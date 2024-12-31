@@ -12,11 +12,16 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const reset = ()=>{
+    formData({ name: '', email: '', password: ''});
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await register(formData);
       alert('Registration successful!');
+      // reset();
     } catch (error) {
       alert(error.response?.data?.message || 'Something went wrong.');
     }
@@ -34,7 +39,7 @@ const Register = () => {
           placeholder="Name"
           value={formData.name}
           onChange={handleChange}
-          className="mb-4 p-2 w-full border rounded"
+          className="mb-4 p-2 w-full border rounded border-black"
         />
         <input
           type="email"
@@ -42,7 +47,7 @@ const Register = () => {
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
-          className="mb-4 p-2 w-full border rounded"
+          className="mb-4 p-2 w-full border border-black rounded"
         />
         <input
           type="password"
@@ -50,7 +55,7 @@ const Register = () => {
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
-          className="mb-6 p-2 w-full border rounded"
+          className="mb-6 p-2 w-full border border-black rounded"
         />
         <button
           type="submit"
