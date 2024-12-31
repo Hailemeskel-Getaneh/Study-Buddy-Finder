@@ -18,7 +18,7 @@ const Login = () => {
     try {
       await login(formData);
       alert('Login successful!');
-      navigate('/');
+      navigate('/profile');
     } catch (error) {
       alert(error.response?.data?.message || 'Login failed');
     }
