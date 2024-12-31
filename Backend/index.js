@@ -19,7 +19,7 @@ mongoose.connect(MONGOURL)
     console.log("Database connection failed", err)
 })
 
-app.use('/api/users', userRoutes);
+app.use('/api', userRoutes);
 
 
 app.get('/', (req, res) => {
