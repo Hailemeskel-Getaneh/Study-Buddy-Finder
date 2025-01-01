@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes.js';
+import profileRoutes from './routes/profileRoutes.js'
+
 
 
 const app = express();
@@ -20,6 +22,7 @@ mongoose.connect(MONGOURL)
 })
 
 app.use('/api', userRoutes);
+app.use('/api', profileRoutes)
 
 
 app.get('/', (req, res) => {
