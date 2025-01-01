@@ -48,7 +48,7 @@ const Home = () => {
   <h2 className="text-3xl font-bold text-center mb-12">
     Why Choose Study Buddy Finder?
   </h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-8 justify-center">
+  <div className="grid m-36 grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 justify-items-center">
     {/* Feature Cards */}
     {[
       {
@@ -84,7 +84,7 @@ const Home = () => {
     ].map((feature, index) => (
       <div
         key={index}
-        className="bg-white p-6 rounded-lg shadow-md text-center transition-transform transform hover:scale-105 hover:shadow-lg max-w-sm mx-auto"
+        className="bg-white p-6 rounded-lg shadow-md text-center transition-transform transform hover:scale-105 hover:shadow-2xl w-96 "
       >
         <img
           src={feature.icon}
@@ -97,6 +97,7 @@ const Home = () => {
     ))}
   </div>
 </main>
+
 
         <Footer />
       </div>
