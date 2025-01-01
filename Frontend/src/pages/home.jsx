@@ -8,6 +8,7 @@ import Scheduleicon from '../assets/images/schedule-Icon.png';
 import Collaboration from '../assets/images/collaboration.png';
 import GlobalCommunity from '../assets/images/global-community.png';
 import Support from '../assets/images/support.png';
+import BgImage from '../assets/images/bg10.png';
 
 import '../../src/index.css';
 
@@ -16,39 +17,45 @@ const Home = () => {
     <>
       <Header />
       <div className="flex flex-col min-h-screen">
-        {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-blue-500 to-purple-600 text-white">
-          <div className="absolute inset-0 bg-black opacity-30"></div>
-          <div className="relative z-10 flex flex-col justify-center items-center h-[70vh] text-center px-4">
-            <h1 className="text-4xl sm:text-6xl font-extrabold mb-4">
-              Study Buddy Finder
-            </h1>
-            <p className="text-lg sm:text-xl max-w-2xl mb-8">
-              Discover study partners who match your interests and courses.
-              Collaborate, learn, and grow together!
-            </p>
-            <div>
-              <Link
-                to="/register"
-                className="bg-yellow-400 text-black font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-yellow-500 mr-4"
-              >
-                Get Started
-              </Link>
-              <Link
-                to="/login"
-                className="bg-white text-gray-800 font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-200"
-              >
-                Login
-              </Link>
-            </div>
-          </div>
-        </div>
+      <div
+  className="relative bg-cover bg-center p-8 text-white"
+  style={{
+    backgroundImage: `url(${BgImage})`,
+  }}
+  
+>
+  <div className="absolute inset-0 bg-black opacity-30"></div>
+  <div className="relative z-10 flex flex-col justify-center items-center h-[70vh] text-center px-4">
+    <h1 className="text-4xl sm:text-6xl font-extrabold mb-4">
+      Study Buddy Finder
+    </h1>
+    <p className="text-lg sm:text-xl max-w-2xl mb-8">
+      Discover study partners who match your interests and courses.
+      Collaborate, learn, and grow together!
+    </p>
+    <div>
+      <Link
+        to="/register"
+        className="bg-yellow-400 text-black font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-yellow-500 mr-4"
+      >
+        Get Started
+      </Link>
+      <Link
+        to="/login"
+        className="bg-white text-gray-800 font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-200"
+      >
+        Login
+      </Link>
+    </div>
+  </div>
+</div>
+
 
         <main className="flex-grow p-8 bg-gray-50">
   <h2 className="text-3xl font-bold text-center mb-12">
     Why Choose Study Buddy Finder?
   </h2>
-  <div className="grid m-36 grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 justify-items-center">
+  <div className="grid m-36 grid-cols-1 sm:grid-cols-2 gap-x-2 gap-y-12 justify-items-center">
     {/* Feature Cards */}
     {[
       {
