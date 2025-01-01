@@ -16,24 +16,32 @@ router.get(
     res.json(profile);
   })
 );
+
 router.put(
     '/profile',
     authMiddleware,
     asyncHandler(async (req, res) => {
       const { bio, interests } = req.body;
   
+      // Ensure bio and interests are provided
       if (!bio || !interests) {
         return res.status(400).json({ message: "Bio and interests are required" });
       }
   
-      let profile = await Profile.findOneAndUpdate(
-        { userId: req.user._id },
-        { $set: { bio, interests } },
-        { new: true, upsert: true } // Create a new profile if it doesn't exist
-      );
+      try {
+        let profile = await Profile.findOneAndUpdate(
+          { userId: req.user._id }, // Search for the profile by user ID
+          { $set: { bio, interests } }, // Update bio and interests
+          { new: true, upsert: true } // Create profile if it doesn't exist
+        );
   
-      res.json(profile);
+        res.status(200).json(profile);
+      } catch (error) {
+        console.error("Error updating profile:", error.message);
+        res.status(500).json({ message: "Failed to update profile" });
+      }
     })
   );
+  
   
 export default router;
