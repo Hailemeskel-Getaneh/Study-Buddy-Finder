@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_UR = 'http://localhost:7000/api/';
+const API_BASE_URL = 'http://localhost:7000/api/';
 
 // Register User
 export const register = async (userData) => {
-  const response = await axios.post(API_BASE_UR + 'register', userData);
+  const response = await axios.post(API_BASE_URL + 'register', userData);
   if (response.data.token) {
     localStorage.setItem('user', JSON.stringify(response.data));
   }
@@ -13,7 +13,7 @@ export const register = async (userData) => {
 
 // Login User
 export const login = async (userData) => {
-  const response = await axios.post(API_BASE_UR + 'login', userData);
+  const response = await axios.post(API_BASE_URL + 'login', userData);
   if (response.data.token) {
     localStorage.setItem('user', JSON.stringify(response.data));
   }
@@ -26,32 +26,38 @@ export const logout = () => {
 };
 
 
-
-// Fetch user profile
+// Get user profile
 export const getUserProfile = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/profile`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    const token = JSON.parse(localStorage.getItem('user'))?.token; // Correct token retrieval
+    if (!token) throw new Error('No token found');
+
+    const response = await axios.get(`${API_BASE_URL}profile`, {
+      headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data;
+    return response.data; // Return profile data
   } catch (error) {
-    console.error('Error fetching user profile:', error);
+    console.error('Error fetching profile:', error);
     throw error;
   }
 };
 
-// Update user profile
-export const updateUserProfile = async (profile) => {
+export const updateUserProfile = async (profileData) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}/profile`, profile, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    const token = JSON.parse(localStorage.getItem('user'))?.token; // Correct token retrieval
+    if (!token) throw new Error('No token found');
+
+    const response = await axios.put(`${API_BASE_URL}profile`, profileData, {
+      headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data;
+    return response.data; // Return updated profile data
   } catch (error) {
-    console.error('Error updating user profile:', error);
+    console.error('Error updating profile:', error);
     throw error;
   }
 };
+
+
 
 // Fetch matches
 export const getMatches = async () => {
